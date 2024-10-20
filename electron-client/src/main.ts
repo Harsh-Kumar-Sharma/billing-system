@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { Tooltip } from "bootstrap";
 import App from "./App.vue";
-
+import './demos/ipc';
 /*
 TIP: To get started with clean router change path to @/router/clean.ts.
  */
@@ -37,4 +37,6 @@ app.directive("tooltip", (el) => {
   new Tooltip(el);
 });
 
-app.mount("#app");
+app.mount("#app").$nextTick(() => {
+  postMessage({ payload: 'removeLoading' }, '*');
+});
